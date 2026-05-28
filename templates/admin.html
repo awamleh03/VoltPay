@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { background-color: #0b172a; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
+        .rate-card { background: #15253e; padding: 20px; border-radius: 15px; border: 2px solid #5bc0de; display: inline-block; margin-bottom: 30px; }
+        .rate-value { font-size: 3em; color: #f0ad4e; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; background: #15253e; border-radius: 10px; }
+        th { background-color: #5bc0de; color: #0b172a; padding: 15px; }
+        td { padding: 15px; border-bottom: 1px solid #0b172a; }
+    </style>
+</head>
+<body>
+    <h1>لوحة تحكم المدير</h1>
+    <div class="rate-card">
+        <p>نسبة العمولة الحالية</p>
+        <div class="rate-value">%{{ "%.1f"|format(rate * 100) }}</div>
+    </div>
+    <h2>سجل العمليات</h2>
+    <table>
+        <tr><th>العملية</th><th>المبلغ</th><th>الحالة</th></tr>
+        {% for tx in txs %}
+        <tr><td>{{ tx.id }}</td><td>{{ tx.amount }}</td><td>{{ tx.status }}</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
